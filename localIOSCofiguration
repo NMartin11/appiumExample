@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Local Test" parallel="tests" thread-count="1" >
+    <parameter name="sauceOs" value="ios" />
+    <parameter name="browser" value="chrome" />
+    <parameter name="sauceBrowserVersion" value="chrome"/>
+    <parameter name="remoteOrLocal" value="local" />
+    <parameter name="maxDurationForSauce" value="10800"/>
+    <parameter name="environment" value="stage" />
+    <!--<parameter name="remoteAddress" value="10.75.172.231" />-->
+    <parameter name="throttle" value="250" />
+    <parameter name="versionNum" value="6.0.1"/>
+</suite>

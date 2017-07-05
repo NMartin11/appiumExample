@@ -1,27 +1,23 @@
-package pages;
+package support.ApiDemoApp;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import javafx.scene.effect.MotionBlur;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.concurrent.TimeUnit;
+import support.Page;
 
 /**
  * Created by namartin on 6/12/2017.
  */
-public class LogTextBoxPage {
-
-    private AndroidDriver driver;
+public class LogTextBoxPage extends Page {
 
     //Constructor
-    public LogTextBoxPage(AndroidDriver driver) {
+    public LogTextBoxPage(AndroidDriver driver, int throttle, String browser) {
+        super(driver, throttle, browser);
         this.driver = driver;
-        PageFactory.initElements(new AppiumFieldDecorator(driver, 30, TimeUnit.SECONDS), this);
+        PageFactory.initElements(driver, this);
     }
 
     @AndroidFindBy(id = "android:id/action_bar")
