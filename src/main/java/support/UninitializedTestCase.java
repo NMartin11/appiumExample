@@ -10,6 +10,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import support.ApiDemoApp.ApiDemoApp;
+import support.SchweserApp.LoginSignupScreen;
+import support.SchweserApp.SchweserApp;
 
 
 public abstract class UninitializedTestCase {
@@ -23,6 +25,7 @@ public abstract class UninitializedTestCase {
 
     //Applications
     protected ApiDemoApp demoApp;
+    protected SchweserApp schweserApp;
 
     //enum for the machine to which commands are sent
     protected enum Box {
@@ -32,7 +35,7 @@ public abstract class UninitializedTestCase {
 
 
     protected Box box;
-    protected String browser;
+    protected String browser = MobileBrowserType.CHROME;
     protected Environment environment;
     protected Platform platform;
     protected String versionNumber;
@@ -100,12 +103,19 @@ public abstract class UninitializedTestCase {
                             DesiredCapabilities capabilities = DesiredCapabilities.android();
                             capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "09494939");
                     //        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "192.168.1.14:5555");
-                    //        capabilities.setCapability("appPackage", "io.appium.android.apis");
-                    //        capabilities.setCapability("appActivity", ".ApiDemos");
+
+                            //used to test frame work with a demo app
+//                            capabilities.setCapability("appPackage", "io.appium.android.apis");
+//                            capabilities.setCapability("appActivity", ".ApiDemos");
+
+                            //Capabilities for Schweser App
+                            capabilities.setCapability("appPackage", "com.schweser.adatpivereview");
+                            capabilities.setCapability("appActivity", ".MainActivity");
+
                             capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
                             capabilities.setCapability(MobileCapabilityType.PLATFORM, Platform.ANDROID);
                             capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, versionNumber);
-                            capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.CHROME);
+//                            capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.CHROME);
 
                             driver = new AndroidDriver(capabilities);
                             break;
@@ -180,6 +190,8 @@ public abstract class UninitializedTestCase {
             }
             selenium = new Page(driver, this.throttle, browser);
             demoApp = new ApiDemoApp(driver, this.throttle, browser);
+            schweserApp = new SchweserApp(driver, this.throttle, browser);
+
         } catch (Exception e) {
             e.printStackTrace();
             Assert.fail();

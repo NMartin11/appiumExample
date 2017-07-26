@@ -3,10 +3,13 @@ package support.ApiDemoApp;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import support.Page;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by namartin on 6/12/2017.
@@ -17,7 +20,7 @@ public class LogTextBoxPage extends Page {
     public LogTextBoxPage(AndroidDriver driver, int throttle, String browser) {
         super(driver, throttle, browser);
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(new AppiumFieldDecorator(this.driver,throttle, TimeUnit.SECONDS),this);
     }
 
     @AndroidFindBy(id = "android:id/action_bar")
