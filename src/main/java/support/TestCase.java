@@ -4,7 +4,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
 //public abstract class TestCase implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider{
-public abstract class TestCase extends UninitializedTestCase{
+public abstract class TestCase extends support.UninitializedTestCase {
 
     @Parameters({ "browser", "remoteOrLocal", "environment",
             "remoteAddress", "sauceBrowserVersion", "throttle",

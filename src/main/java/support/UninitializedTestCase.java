@@ -1,4 +1,5 @@
 package support;
+
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileBrowserType;
@@ -10,8 +11,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import support.ApiDemoApp.ApiDemoApp;
-import support.SchweserApp.LoginSignupScreen;
 import support.SchweserApp.SchweserApp;
+import support.UswerMovements.UserMovements;
 
 
 public abstract class UninitializedTestCase {
@@ -20,12 +21,13 @@ public abstract class UninitializedTestCase {
     protected String currentBrowser;
     protected AndroidDriver driver;
     protected String url;
-    protected Page selenium;
+    protected support.Page selenium;
     protected int idleClientTimeOut = -1;
 
     //Applications
     protected ApiDemoApp demoApp;
     protected SchweserApp schweserApp;
+    protected UserMovements userMovements;
 
     //enum for the machine to which commands are sent
     protected enum Box {
@@ -36,7 +38,7 @@ public abstract class UninitializedTestCase {
 
     protected Box box;
     protected String browser = MobileBrowserType.CHROME;
-    protected Environment environment;
+    protected support.Environment environment;
     protected Platform platform;
     protected String versionNumber;
     protected int throttle;
@@ -59,13 +61,13 @@ public abstract class UninitializedTestCase {
             //sets ENVIRONMENT
             this.throttle = Integer.parseInt(throttleText);
             if (sEnvironment.toLowerCase().contains("stage")) {
-                environment = Environment.STAGE;
+                environment = support.Environment.STAGE;
             } else if (sEnvironment.toLowerCase().contains("test")) {
-                environment = Environment.TEST;
+                environment = support.Environment.TEST;
             } else if (sEnvironment.toLowerCase().contains("dev")) {
-                environment = Environment.DEV;
+                environment = support.Environment.DEV;
             } else if (sEnvironment.toLowerCase().contains("qa2")) {
-                environment = Environment.QA2;
+                environment = support.Environment.QA2;
             }
 
             //sets BROWSER
@@ -109,7 +111,7 @@ public abstract class UninitializedTestCase {
 //                            capabilities.setCapability("appActivity", ".ApiDemos");
 
                             //Capabilities for Schweser App
-                            capabilities.setCapability("appPackage", "com.schweser.adatpivereview");
+                            capabilities.setCapability("appPackage", "com.schweser.adaptivereview");
                             capabilities.setCapability("appActivity", ".MainActivity");
 
                             capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
@@ -188,9 +190,11 @@ public abstract class UninitializedTestCase {
                     break;*/
 
             }
-            selenium = new Page(driver, this.throttle, browser);
+            selenium = new support.Page(driver, this.throttle, browser);
             demoApp = new ApiDemoApp(driver, this.throttle, browser);
             schweserApp = new SchweserApp(driver, this.throttle, browser);
+            userMovements = new UserMovements(driver, this.throttle, browser);
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -208,49 +212,6 @@ public abstract class UninitializedTestCase {
     }
     protected void setIdleClientTimeOut(int idleClientTimeOut){
         this.idleClientTimeOut = idleClientTimeOut;
-    }
-
-    protected void goToUrlByEnvironment(String stageUrl, String testUrl){
-        switch (environment) {
-            case STAGE:
-                driver.get(stageUrl);
-                break;
-            case TEST:
-                driver.get(testUrl);
-                break;
-            case DEV:
-                break;
-            default:
-                break;
-        }
-    }
-
-    protected void goToUrlByEnvironment(String stageUrl, String testUrl, String devUrl, String test2Url){
-        switch (environment) {
-            case STAGE:
-                driver.get(stageUrl);
-                break;
-            case TEST:
-                driver.get(testUrl);
-                break;
-            case DEV:
-                driver.get(devUrl);
-                break;
-            case QA2:
-                driver.get(test2Url);
-            default:
-                break;
-        }
-    }
-
-    /**
-     * Assert that url contains text.
-     * @param text
-     */
-    public void assertUrlContains(String text){
-        String url = driver.getCurrentUrl();
-        Assert.assertTrue(url.contains(text),
-                "Url did not contain " + text + ".");
     }
 
     public WebDriver getDriver() {

@@ -2,6 +2,7 @@ package support;
 
 import com.codesnippets4all.json.parsers.JSONParser;
 import com.codesnippets4all.json.parsers.JsonParserFactory;
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -17,13 +18,13 @@ import java.util.Map;
 
 public class Page {
     protected String browser;
-    protected WebDriver driver;
+    protected AndroidDriver driver;
     protected int timeOutInSeconds = 30;
     protected int tryTimeoutInSeconds = 5;
     protected int throttle;
     public boolean useAjaxWaits;
 
-    public Page(WebDriver driver, int throttle, String browser) {
+    public Page(AndroidDriver driver, int throttle, String browser) {
         this.driver = driver;
         this.throttle = throttle;
         this.browser = browser;

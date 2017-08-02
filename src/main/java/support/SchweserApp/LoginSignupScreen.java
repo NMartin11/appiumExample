@@ -25,9 +25,11 @@ public class LoginSignupScreen extends Page{
     @AndroidFindBy(className = "android.widget.TextView")
     private MobileElement welcomeHeader;
 
-
     //Getters
     public String getWelcomeText() throws InterruptedException {
         return waitVisible(welcomeHeader).getText();
     }
+
+
+
 }

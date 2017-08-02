@@ -2,9 +2,7 @@ package testcases;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import support.ApiDemoApp.HomeScreenPage;
 import support.TestCase;
-import support.ApiDemoApp.ApiDemoApp;
 
 /**
  * Created by namartin on 6/21/2017.
