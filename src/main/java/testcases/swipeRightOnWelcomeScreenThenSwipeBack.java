@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
  * opens app, swipes right on the home screen and checks text on current screen
  * Created By namartin: 7/26/2017
  **/
-public class swipeRightOnWelcomeScreen extends TestCase{
+public class swipeRightOnWelcomeScreenThenSwipeBack extends TestCase{
 
     @Test(groups = "schewserApp")
-    public void swipeRightOnWelcomeScreen() throws Exception {
+    public void swipeRightOnWelcomeScreenThenSwipeBack() throws Exception {
 
         //Step 1 check we're on welcome screen
         List<String> headerText = selenium.waitAllVisible(By.className("android.widget.TextView")).stream().map(e ->
@@ -31,7 +31,16 @@ public class swipeRightOnWelcomeScreen extends TestCase{
 
         assertThisHasThat(headerText.get(0), "Increase your odds of passing the Level I CFA® exam");
 
+        //Step 3
+        userMovements.swipes.swipeBack();
+
+        headerText = selenium.waitAllVisible(By.className("android.widget.TextView")).stream().map(e ->
+                e.getText()).collect(Collectors.toList());
+
+        assertThisHasThat(headerText.get(0), "Welcome to Adaptive");
+
     }
 
 
 }
+

@@ -8,11 +8,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * open app and check text on home screen
  * Created By namartin: 7/25/2017
  **/
 public class appCheckIfOnLoginSignupScreen extends TestCase {
 
-    @Test
+    @Test(groups = "schweserApp")
     public void checkIfOnLoginSignupScreen() throws Exception {
 
 

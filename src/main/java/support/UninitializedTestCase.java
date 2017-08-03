@@ -55,7 +55,7 @@ public abstract class UninitializedTestCase {
 
 
     public void initialize(String sBrowser, String sBox, String sEnvironment,
-                           String remoteAddress, String sauceBrowserVersion, String throttleText,
+                            String sauceBrowserVersion, String throttleText,
                            String maxDurationForSauce, String sauceOs, String versionNum) {
         try {
             //sets ENVIRONMENT
@@ -138,7 +138,7 @@ public abstract class UninitializedTestCase {
                             capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
                             capabilities.setCapability(MobileCapabilityType.PLATFORM, Platform.ANDROID);
                             capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "6.0.1");
-                            capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.CHROME);
+//                            capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.CHROME);
 
                             driver = new AndroidDriver(capabilities);
                             break;

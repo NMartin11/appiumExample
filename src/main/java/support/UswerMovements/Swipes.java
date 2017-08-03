@@ -37,8 +37,8 @@ public class Swipes extends Page {
 
     public void setScreenDimensionsForSwiping() throws Exception {
         //start and end points for swiping horizontally
-        rightSide = (int) (getScreenSize().width * 0.70);
-        leftSide = (int) (getScreenSize().width * 0.30);
+        rightSide = (int) (getScreenSize().width * 0.95);
+        leftSide = (int) (getScreenSize().width * 0.05);
 
         //Middle of screen
         middle = (int) (getScreenSize().width * 0.70);
@@ -46,11 +46,11 @@ public class Swipes extends Page {
 
 
     public void swipeForward() throws Exception {
-        driver.swipe(rightSide, middle, leftSide, middle, 100);
+        driver.swipe(rightSide, middle, leftSide, middle, 1000);
     }
 
     public void swipeBack() throws Exception {
-        driver.swipe(leftSide,  middle,  rightSide,  middle,  3000);
+        driver.swipe(leftSide,  middle,  rightSide,  middle,  1000);
     }
 
 }
